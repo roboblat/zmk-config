@@ -99,7 +99,7 @@
         transform = <&default_transform>;
     };
 
-    /* Transform block for standard mouse movement */
+    /* The Mouse Transform (Untouched) */
     trackpad_transform: trackpad_transform {
         compatible = "zmk,input-processor-transform";
         #input-processor-cells = <1>;
@@ -108,7 +108,7 @@
         y-codes = <INPUT_REL_Y>;
     };
 
-    /* NEW: Transform block specifically for the scroll wheels */
+    /* NEW: The Dedicated Scroll Transform */
     trackpad_scroll_transform: trackpad_scroll_transform {
         compatible = "zmk,input-processor-transform";
         #input-processor-cells = <1>;
@@ -120,9 +120,9 @@
     trackpad_listener {
         compatible = "zmk,input-listener";
         device = <&tps43>;
-        /* Apply the exact same rotation fix to both the movement and the scrolling */
+        /* Apply independent corrections to the cursor and the scroll */
         input-processors = 
             <&trackpad_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)>,
-            <&trackpad_scroll_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)>;
+            <&trackpad_scroll_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>;
     };
 };
