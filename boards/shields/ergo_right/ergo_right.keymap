@@ -11,12 +11,12 @@
                 /* Row 0 */
                 &kp Y     &kp U     &kp I       &kp O       &kp DEL     &kp BSPC
                 /* Row 1 */
-                &kp H     &kp J     &kp K       &kp L       &kp P       &kp RET
+                &kp H     &kp J     &kp K       &kp L       &kp P       &kp RSHFT
                 /* Row 2 */
-                &kp N     &kp M     &kp COMMA   &kp DOT     &kp SEMI    &kp RSHFT
-                /* Row 3 - Confirmed Space/Left/Up, rest are diagnostic pings */
-                &kp SPACE &kp LEFT  &kp UP      &kp N0      &kp FSLH    &kp LCTRL
-                /* Row 4 - Pure diagnostic pings for your dead keys */
+                &kp N     &kp M     &kp COMMA   &kp DOT     &kp SEMI    &kp RET
+                /* Row 3 - Confirmed Space/Arrows */
+                &kp SPACE &kp LEFT  &kp UP      &kp RIGHT   &kp FSLH    &kp LCTRL
+                /* Row 4 - Diagnostics for D10 */
                 &kp N4    &kp N5    &kp N6      &kp N7      &kp N8      &kp N9
             >;
         };
