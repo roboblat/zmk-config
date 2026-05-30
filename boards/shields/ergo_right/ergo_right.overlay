@@ -94,4 +94,10 @@
         kscan = <&kscan0>;
         transform = <&default_transform>;
     };
+
+    /* THE MISSING LINK: This tells ZMK to listen to the trackpad */
+    trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&tps43>;
+    };
 };
