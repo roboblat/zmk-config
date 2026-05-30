@@ -8,16 +8,11 @@
 
         default_layer {
             bindings = <
-                /* Row 0 */
-                &kp Y     &kp U     &kp I       &kp O       &kp P       &kp RET
-                /* Row 1 */
-                &kp H     &kp J     &kp K       &kp L       &kp SEMI    &kp RSHFT
-                /* Row 2 */
-                &kp N     &kp M     &kp COMMA   &kp DOT     &kp FSLH    &kp LCTRL
-                /* Row 3 */
-                &kp SPACE &kp LEFT  &kp UP      &kp RIGHT
-                /* Row 4 */
-                                                &kp DOWN
+                        &kp Y    &kp U    &kp I     &kp O
+                        &kp H    &kp J    &kp K     &kp L     &kp DEL     &kp BSPC
+                        &kp N    &kp M    &kp COMMA &kp DOT   &kp P       &kp RSHFT
+                        &kp SPACE &kp LEFT &kp UP   &kp RIGHT &kp SEMI    &kp RET
+                                                    &kp DOWN
             >;
         };
     };
