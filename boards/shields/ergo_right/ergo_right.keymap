@@ -23,8 +23,8 @@
                 /* Row 4: D10 */
                 &none     &none     &none       &kp DOWN    &none       &none
                 
-                /* Row 5: D7 (Mouse Keys) */
-                &mkp MB1  &mkp MB3  &mkp MB2    &none       &none       &none
+                /* Row 5: D7 (Mouse Keys - MB2 and MB1 Swapped) */
+                &mkp MB2  &mkp MB3  &mkp MB1    &none       &none       &none
             >;
         };
     };
