@@ -6,11 +6,11 @@
  * expander providing the column inputs.
  *
  * Pin map (XIAO nRF52840 Plus):
- *   I2C SDA       = D4 = P0.04
- *   I2C SCL       = D5 = P0.05
- *   Trackpad RDY  = D2 = P0.28   (currently unused; see bottom of file)
- *   Rows          = D3 (P0.29), D6 (P1.11), D8 (P1.13), D9 (P1.14)
- *   Columns       = MCP23008 GP0..GP5
+ * I2C SDA       = D4 = P0.04
+ * I2C SCL       = D5 = P0.05
+ * Trackpad RDY  = D2 = P0.28   (currently unused; see bottom of file)
+ * Rows          = D3 (P0.29), D6 (P1.11), D8 (P1.13), D9 (P1.14)
+ * Columns       = MCP23008 GP0..GP5
  *
  * Matrix orientation: col2row. Diodes on rows, cathodes facing the
  * controller. Bottom row is half-populated (4 extra keys spliced into
@@ -59,11 +59,11 @@
     /*
      * MCP23008 IO Expander.
      * - Compatible is the per-chip "microchip,mcp23008".  The older
-     *   generic "microchip,mcp230xx" binding was removed in Zephyr
-     *   4.0 — using it now produces a silent "no binding found" and
-     *   the expander effectively disappears.
+     * generic "microchip,mcp230xx" binding was removed in Zephyr
+     * 4.0 — using it now produces a silent "no binding found" and
+     * the expander effectively disappears.
      * - `ngpios` is intentionally omitted; the binding now infers it
-     *   from the chip name.
+     * from the chip name.
      */
     mcp23008: mcp23008@20 {
         compatible = "microchip,mcp23008";
@@ -80,20 +80,20 @@
      * only includes RDY on D2 (P0.28); RST is not connected.
      *
      * To enable the trackpad:
-     *   1. Pick a free pin (D0, D1, D7, or D10 on the XIAO Plus) and
-     *      wire it to the trackpad's RST pad.
-     *   2. Uncomment the AYM1607 remote + project in config/west.yml.
-     *   3. Uncomment CONFIG_INPUT and CONFIG_ZMK_POINTING in
-     *      config/ergo_right.conf.
-     *   4. Uncomment the block below and replace <PORT> and <PIN>
-     *      with the gpio0/gpio1 port and pin you chose for RST.
+     * 1. Pick a free pin (D0, D1, D7, or D10 on the XIAO Plus) and
+     * wire it to the trackpad's RST pad.
+     * 2. Uncomment the AYM1607 remote + project in config/west.yml.
+     * 3. Uncomment CONFIG_INPUT and CONFIG_ZMK_POINTING in
+     * config/ergo_right.conf.
+     * 4. Uncomment the block below and replace <PORT> and <PIN>
+     * with the gpio0/gpio1 port and pin you chose for RST.
      *
      * trackpad: iqs5xx@74 {
-     *     compatible = "azoteq,iqs5xx";
-     *     status = "okay";
-     *     reg = <0x74>;
-     *     reset-gpios = <&gpio<PORT> <PIN> GPIO_ACTIVE_LOW>;
-     *     rdy-gpios   = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+     * compatible = "azoteq,iqs5xx";
+     * status = "okay";
+     * reg = <0x74>;
+     * reset-gpios = <&gpio<PORT> <PIN> GPIO_ACTIVE_LOW>;
+     * rdy-gpios   = <&gpio0 28 GPIO_ACTIVE_HIGH>;
      * };
      * ----------------------------------------------------------------- */
 };
@@ -115,22 +115,19 @@
         wakeup-source;
 
         row-gpios
-            = <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&gpio1 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
 
-        /* MCP23008 columns. ACTIVE_LOW | PULL_UP so the expander pins
-         * are not floating — this is the fix for the USB-flooding
-         * issue from your first message. */
         col-gpios
-            = <&mcp23008 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&mcp23008 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&mcp23008 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&mcp23008 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&mcp23008 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&mcp23008 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            = <&mcp23008 0 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 1 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 2 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 3 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 4 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 5 GPIO_ACTIVE_HIGH>
             ;
     };
 
