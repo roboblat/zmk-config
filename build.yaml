@@ -1,4 +1,0 @@
-strategy:
-      matrix:
-        board: [xiao_ble]
-        shield: [ergo_left, ergo_right]
