@@ -1,7 +1,6 @@
 #include <zephyr/dt-bindings/gpio/gpio.h>
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <dt-bindings/zmk/input_transform.h> /* NEW: Required for axis inversion */
 
 &pinctrl {
     i2c0_default: i2c0_default {
@@ -42,7 +41,7 @@
         rdy-gpios = <&gpio0 28 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         reset-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; 
         
-        /* NEW: Wake up the native two-finger scroll capability */
+        /* Two-finger scroll enabled */
         scroll;
     };
 };
@@ -59,12 +58,12 @@
         wakeup-source;
 
         row-gpios
-            = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 0: D3 (Top Row) */
-            , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 1: D6 (Home Row) */
-            , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 2: D8 (Bottom Row) */
-            , <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 3: D9 (Space/Arrows) */
-            , <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 4: D10 (Down Arrow) */
-            , <&gpio1 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 5: D7 (Mouse Keys) */
+            = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 0: D3 */
+            , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 1: D6 */
+            , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 2: D8 */
+            , <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 3: D9 */
+            , <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 4: D10 */
+            , <&gpio1 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 5: D7 */
             ;
 
         col-gpios
@@ -98,11 +97,16 @@
         transform = <&default_transform>;
     };
 
+    /* Explicitly define the axis transform */
+    trackpad_transform: trackpad_transform {
+        compatible = "zmk,input-processor-transform";
+        x-invert;
+    };
+
     trackpad_listener {
         compatible = "zmk,input-listener";
         device = <&tps43>;
-        
-        /* NEW: Flip the X-axis before it hits the computer */
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>;
+        /* Route the trackpad data through the transform defined above */
+        input-processors = <&trackpad_transform>;
     };
 };
