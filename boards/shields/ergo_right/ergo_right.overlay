@@ -99,18 +99,19 @@
         transform = <&default_transform>;
     };
 
-    /* The compiler-mandated 1-cell transform block */
+    /* PERFECTING THE MOVEMENT: Swap axes to fix the 90-degree physical rotation, then invert X */
     trackpad_transform: trackpad_transform {
         compatible = "zmk,input-processor-transform";
         #input-processor-cells = <1>;
         x-codes = <INPUT_REL_X>;
         y-codes = <INPUT_REL_Y>;
+        xy-swap;
+        x-invert;
     };
 
     trackpad_listener {
         compatible = "zmk,input-listener";
         device = <&tps43>;
-        /* Passing the invert command as the required argument */
         input-processors = <&trackpad_transform INPUT_TRANSFORM_X_INVERT>;
     };
 };
