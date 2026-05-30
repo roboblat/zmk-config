@@ -58,17 +58,17 @@
             = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 0: D3 */
             , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 1: D6 */
             , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 2: D8 */
-            , <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 3: D9 (Trackpad keys) */
-            , <&gpio0  3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 4: D10 (Spacebar) */
+            , <&gpio1 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 3: D9 */
+            , <&gpio0  3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> /* Row 4: D10 */
             ;
 
         col-gpios
-            = <&mcp23008 0 GPIO_ACTIVE_HIGH> /* Col 0: Y */
-            , <&mcp23008 1 GPIO_ACTIVE_HIGH> /* Col 1: U */
-            , <&mcp23008 2 GPIO_ACTIVE_HIGH> /* Col 2: I */
-            , <&mcp23008 3 GPIO_ACTIVE_HIGH> /* Col 3: O */
-            , <&mcp23008 4 GPIO_ACTIVE_HIGH> /* Col 4: P/DEL */
-            , <&mcp23008 5 GPIO_ACTIVE_HIGH> /* Col 5: BSPC */
+            = <&mcp23008 0 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 1 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 2 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 3 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 4 GPIO_ACTIVE_HIGH>
+            , <&mcp23008 5 GPIO_ACTIVE_HIGH>
             ;
     };
 
@@ -76,16 +76,13 @@
         compatible = "zmk,matrix-transform";
         columns = <6>;
         rows = <5>;
-        /* * Exactly 22 keys. 
-         * Notice Cols 4 & 5 skip Row 0 entirely and shift down to Row 1, 2, 3.
-         * The spacebar is isolated at RC(4,3).
-         */
+        /* Lighting up the entire 30-key grid to find the dead switches */
         map = <
-            RC(0,0) RC(0,1) RC(0,2) RC(0,3)
+            RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)
             RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)
             RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)
-            RC(3,0) RC(3,1) RC(3,2)         RC(3,4) RC(3,5)
-                                    RC(4,3)
+            RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)
+            RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5)
         >;
     };
 
