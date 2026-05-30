@@ -2,6 +2,7 @@
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <dt-bindings/zmk/input_transform.h>
 
 &pinctrl {
     i2c0_default: i2c0_default {
@@ -98,18 +99,18 @@
         transform = <&default_transform>;
     };
 
-    /* Fully defined axis transform with the missing cells parameter */
+    /* The compiler-mandated 1-cell transform block */
     trackpad_transform: trackpad_transform {
         compatible = "zmk,input-processor-transform";
-        #input-processor-cells = <0>;
+        #input-processor-cells = <1>;
         x-codes = <INPUT_REL_X>;
         y-codes = <INPUT_REL_Y>;
-        x-invert;
     };
 
     trackpad_listener {
         compatible = "zmk,input-listener";
         device = <&tps43>;
-        input-processors = <&trackpad_transform>;
+        /* Passing the invert command as the required argument */
+        input-processors = <&trackpad_transform INPUT_TRANSFORM_X_INVERT>;
     };
 };
