@@ -1,7 +1,7 @@
 #include <zephyr/dt-bindings/gpio/gpio.h>
 #include <zephyr/dt-bindings/pinctrl/nrf-pinctrl.h>
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <zephyr/dt-bindings/input/input-event-codes.h> /* NEW: Required to define X and Y axis codes */
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &pinctrl {
     i2c0_default: i2c0_default {
@@ -98,9 +98,10 @@
         transform = <&default_transform>;
     };
 
-    /* Fully defined axis transform */
+    /* Fully defined axis transform with the missing cells parameter */
     trackpad_transform: trackpad_transform {
         compatible = "zmk,input-processor-transform";
+        #input-processor-cells = <0>;
         x-codes = <INPUT_REL_X>;
         y-codes = <INPUT_REL_Y>;
         x-invert;
