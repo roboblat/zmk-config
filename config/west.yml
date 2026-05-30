@@ -2,18 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    # Uncomment the line below once you've decided to use the Azoteq
-    # trackpad driver and have wired up its RST pin (see overlay).
-    # - name: AYM1607
-    #   url-base: https://github.com/AYM1607
+    - name: AYM1607
+      url-base: https://github.com/AYM1607
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    # Uncomment the block below in tandem with the AYM1607 remote above:
-    # - name: zmk-driver-azoteq-iqs5xx
-    #   remote: AYM1607
-    #   revision: main
+    - name: zmk-driver-azoteq-iqs5xx
+      remote: AYM1607
+      revision: main
   self:
     path: config
