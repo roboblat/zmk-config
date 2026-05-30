@@ -99,7 +99,7 @@
         transform = <&default_transform>;
     };
 
-    /* Strictly define the data types to intercept (No illegal arguments here) */
+    /* Transform block for standard mouse movement */
     trackpad_transform: trackpad_transform {
         compatible = "zmk,input-processor-transform";
         #input-processor-cells = <1>;
@@ -108,10 +108,21 @@
         y-codes = <INPUT_REL_Y>;
     };
 
+    /* NEW: Transform block specifically for the scroll wheels */
+    trackpad_scroll_transform: trackpad_scroll_transform {
+        compatible = "zmk,input-processor-transform";
+        #input-processor-cells = <1>;
+        type = <INPUT_EV_REL>;
+        x-codes = <INPUT_REL_HWHEEL>;
+        y-codes = <INPUT_REL_WHEEL>;
+    };
+
     trackpad_listener {
         compatible = "zmk,input-listener";
         device = <&tps43>;
-        /* Pass the swap and invert arguments explicitly to the processor */
-        input-processors = <&trackpad_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)>;
+        /* Apply the exact same rotation fix to both the movement and the scrolling */
+        input-processors = 
+            <&trackpad_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)>,
+            <&trackpad_scroll_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)>;
     };
 };
