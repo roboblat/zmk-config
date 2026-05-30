@@ -7,11 +7,15 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            /* * Visually matching your physical stagger. 
+             * Trackpad keys temporarily mapped to 1, 2, 3 to test hardware.
+             */
             bindings = <
-                &kp Y    &kp U    &kp I     &kp O     &kp P       &kp BSPC
-                &kp H    &kp J    &kp K     &kp L     &kp SEMI    &kp RET
-                &kp N    &kp M    &kp COMMA &kp DOT   &kp FSLH    &kp RSHFT
-                &mkp MB1 &mkp MB3 &mkp MB2  &kp SPACE
+                        &kp Y    &kp U    &kp I     &kp O
+                        &kp H    &kp J    &kp K     &kp L     &kp DEL     &kp BSPC
+                        &kp N    &kp M    &kp COMMA &kp DOT   &kp P       &kp RET
+                        &kp N1   &kp N2   &kp N3              &kp SEMI    &kp RSHFT
+                                                    &kp SPACE
             >;
         };
     };
