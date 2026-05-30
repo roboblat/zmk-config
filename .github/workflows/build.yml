@@ -1,7 +1,4 @@
-on: [push, pull_request, workflow_dispatch]
-
-name: Build
-
-jobs:
-  build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+strategy:
+      matrix:
+        board: [xiao_ble]
+        shield: [ergo_left, ergo_right]
