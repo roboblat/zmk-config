@@ -1,0 +1,8 @@
+file_format: "1"
+id: ergo_left
+name: Ergo Left
+type: shield
+url: ""
+requires: [xiao]
+features:
+  - keys
