@@ -1,5 +1,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
 
 / {
     keymap {
@@ -7,11 +8,11 @@
 
         default_layer {
             bindings = <
-                &kp ESC    &kp LALT   &kp W       &kp E       &kp R       &kp T
-                &kp TAB    &kp Q      &kp S       &kp D       &kp F       &kp G
-                &kp LSHFT  &kp A      &kp X       &kp C       &kp V       &kp B
-                &kp LCTRL  &kp Z      &kp LBKT    &kp LBRC    &kp RBKT    &kp SPACE
-                &kp RBRC
+                &kp ESC   &kp LALT  &kp W     &kp E     &kp R     &kp T
+                &kp TAB   &kp Q     &kp S     &kp D     &kp F     &kp G
+                &kp LSHFT &kp A     &kp X     &kp C     &kp V     &kp B
+                &kp LCTRL &kp Z     &kp LPAR  &kp COMMA &kp RPAR  &kp SPACE
+                &kp DOT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
