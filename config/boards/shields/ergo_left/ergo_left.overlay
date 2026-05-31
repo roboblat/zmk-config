@@ -12,12 +12,8 @@
         diode-direction = "col2row";
         wakeup-source;
 
-        row-gpios
-            = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            ;
-        col-gpios
-            = <&gpio0 2 GPIO_ACTIVE_HIGH>
-            ;
+        row-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+        col-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
     };
 
     default_transform: keymap_transform_0 {
