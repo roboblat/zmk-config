@@ -6,7 +6,25 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            bindings = <&kp A>;
+            bindings = 
+                /* Row 0 */
+                &kp ESC    &kp LALT   &kp W      &kp E      &kp R      &kp T
+
+                /* Row 1 */
+                &kp TAB    &kp Q      &kp S      &kp D      &kp F      &kp G
+
+                /* Row 2 */
+                &kp LSHFT  &kp A      &kp X      &kp C      &kp V      &kp B
+
+                /* Row 3 */
+                &kp LCTRL  &kp Z      &kp LBKT   &kp LBRC   &kp RBKT   &kp SPACE
+
+                /* Row 4 */
+                &kp RBRC
+            >;
+
+            /* Encoder: turn = volume up/down */
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
