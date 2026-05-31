@@ -3,4 +3,10 @@ if SHIELD_ERGO_LEFT
 config ZMK_KEYBOARD_NAME
     default "Ergo Left"
 
+config I2C
+    default y
+
+config GPIO_MCP230XX
+    default y
+
 endif
