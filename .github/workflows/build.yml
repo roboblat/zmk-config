@@ -10,7 +10,7 @@ jobs:
         with:
           submodules: recursive
       - name: Build
-        uses: zmkfirmware/zmk-build-action@main
+        uses: zmkfirmware/zmk-build-action@v1
         with:
           board: xiao_ble
           shield: ergo_right
