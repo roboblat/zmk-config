@@ -1,4 +1,4 @@
-name: zmk-keyboard-ergo-right
+name: zmk-keyboard-ergo
 build:
   settings:
     board_root: .
